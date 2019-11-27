@@ -3,6 +3,39 @@ AWS CloudFormation Resource Provider Development Kit
 
 The CloudFormation CLI (cfn) allows you to author your own resource providers that can be used by CloudFormation.
 
+Usage
+-----
+
+Installation
+^^^^^^^^^^^^
+
+This tool can be installed using `pip <https://pypi.org/project/pip/>`_ from
+the Python Package Index (PyPI). It requires Python 3. The tool requires at least one language plugin. The language plugins are also available on PyPI and as such can be installed all at once:
+
+.. code-block:: bash
+
+    pip install cloudformation-cli cloudformation-cli-java-plugin cloudformation-cli-go-plugin
+
+
+
+Command: init
+^^^^^^^^^^^^^
+
+To create a project in the current directory, use the ``init`` command. A wizard will guide you through the creation.
+
+.. code-block:: bash
+
+    cfn init
+
+Command: generate
+^^^^^^^^^^^^^^^^^
+
+To refresh auto-generated code, use the ``generate`` command. Usually, plugins try to integrate this command in the native build flow, so please consult a plugin's README to see if this is necessary.
+
+.. code-block:: bash
+
+    cfn generate
+
 Development
 -----------
 
@@ -25,46 +58,16 @@ You will also need to install a language plugin, such as `the Java language plug
 
 Linting and running unit tests is done via `pre-commit <https://pre-commit.com/>`_, and so is performed automatically on commit. The continuous integration also runs these checks. Manual options are available so you don't have to commit):
 
-```
-# run all hooks on all files, mirrors what the CI runs
-pre-commit run --all-files
-# run unit tests only. can also be used for other hooks, e.g. black, flake8, pylint-local
-pre-commit run pytest-local
-```
+.. code-block:: bash
+
+    # run all hooks on all files, mirrors what the CI runs
+    pre-commit run --all-files
+    # run unit tests only. can also be used for other hooks, e.g. black, flake8, pylint-local
+    pre-commit run pytest-local
+
 
 If you want to generate an HTML coverage report afterwards, run
 ``coverage html``. The report is output to ``htmlcov/index.html``.
-
-Usage
------
-
-Installation
-^^^^^^^^^^^^
-
-This tool can be installed using `pip <https://pypi.org/project/pip/>`_ from
-the Python Package Index (PyPI). It requires Python 3.
-
-.. code-block:: bash
-
-    pip install cloudformation-cli
-
-Command: init
-^^^^^^^^^^^^^
-
-To create a project in the current directory, use the ``init`` command. A wizard will guide you through the creation.
-
-.. code-block:: bash
-
-    cfn init
-
-Command: generate
-^^^^^^^^^^^^^^^^^
-
-To refresh auto-generated code, use the ``generate`` command. Usually, plugins try to integrate this command in the native build flow, so please consult a plugin's README to see if this is necessary.
-
-.. code-block:: bash
-
-    cfn generate
 
 Plugin system
 -------------
@@ -84,6 +87,16 @@ Plugins must provide the same interface as ``LanguagePlugin`` (in
 ``plugin_base.py``). And they may inherit from ``LanguagePlugin`` for the helper
 methods - but this is not necessary. As long as the class has the same methods,
 it will work as a plugin.
+
+Supported plugins
+^^^^^^^^^^^^^^^^^
+========  =================  =======================================================================================================================  ============================================================================================
+Language  Status             Github                                                                                                                   PyPI
+========  =================  =======================================================================================================================  ============================================================================================
+Java      Available          `aws-cloudformation-rpdk-java-plugin <https://github.com/aws-cloudformation/aws-cloudformation-rpdk-java-plugin/>`_      `cloudformation-cli-java-plugin <https://pypi.org/project/cloudformation-cli-java-plugin/>`_
+Go        Available          `aws-cloudformation-rpdk-go-plugin <https://github.com/aws-cloudformation/aws-cloudformation-rpdk-go-plugin/>`_          `cloudformation-cli-go-plugin <https://pypi.org/project/cloudformation-cli-go-plugin/>`_
+Python    Developer Preview  `aws-cloudformation-rpdk-python-plugin <https://github.com/aws-cloudformation/aws-cloudformation-rpdk-python-plugin/>`_  N/A
+========  =================  =======================================================================================================================  ============================================================================================
 
 License
 -------
