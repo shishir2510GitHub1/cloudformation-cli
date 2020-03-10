@@ -1,0 +1,30 @@
+{
+  "version": "0",
+  "id": "98377d67-b006-cdc3-1363-8a0aee2316f8",
+  "detail-type": "CodeCommit Pull Request State Change",
+  "source": "aws.codecommit",
+  "account": "%s",
+  "time": "2018-02-09T07:15:16Z",
+  "region": "us-east-1",
+  "resources": [
+    "arn:aws:codecommit:us-east-1:123456789012:my-new-repository"
+  ],
+  "detail": {
+    "author": "author",
+    "callerUserArn": "arn:aws:sts::123456789012:assumed-role/Admin/user",
+    "creationDate": "Tue Jun 18 10:18:42 PDT 2019",
+    "description": "example description",
+    "destinationCommit": "12241970655145931562938821759265969907",
+    "destinationReference": "master",
+    "event": "pullRequestCreated",
+    "isMerged": "False",
+    "lastModifiedDate": "Tue Jun 18 10:18:42 PDT 2019",
+    "notificationBody": "A pull request event occurred in the following AWS CodeCommit repository: myRepo. arn:aws:sts::123456789012:assumed-role/Admin/user made the following PullRequest 1. The pull request was created with the following information: Pull Request ID as 1 and title as example title. For more information, go to the AWS CodeCommit console https://us-east-1.console.aws.amazon.com/codesuite/codecommit/repositories/myRepo/pull-requests/1?region\u003dus-east-1",
+    "pullRequestId": "%s",
+    "pullRequestStatus": "%s",
+    "repositoryNames": ["my-new-repository"],
+    "sourceCommit": "27742901703401355655912545615734404050",
+    "sourceReference": "branch1",
+    "title": "example title"
+  }
+}
